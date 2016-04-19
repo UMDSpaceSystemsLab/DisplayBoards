@@ -1,0 +1,5 @@
+SYSTEM
+SYSTEM.backup
+resources/kodi-config-enc.tar.7z
+resources/kodi-config-enc.tar.7z*
+resources/kodi-config-enc.tar.7z.old
