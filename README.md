@@ -48,3 +48,8 @@ This is a repo for the SBC display computers attached to the numerous Television
  11. Unmount both partitions and eject the SD card.
 
  12. Plug in and enjoy!
+ 
+ 13. (OPTIONAL) If you are using composite mode, you can go into
+     `System > Settings > System > Video Output > Video calibration...`
+     to adjust the overscan. This would allow all of the contents of the
+     screen to be seen.
