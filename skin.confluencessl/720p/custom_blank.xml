@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1234">
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<controls>
+		<include>CommonBackground</include>
+	</controls>	
+</window>
