@@ -57,11 +57,11 @@ bbecho "Creating \033[32mencrypted\033[0m\033[1m configuration archive..."
 sleep 3s
 tar cf - ".kodi" ".cache" | 7z a -si "$SCRIPT_DIR/$ARC" -mhe -p"$SSL_DISPLAYBOARD_ARC_PASS"
 
-becho "Restoring permissions on configuration archive..."
-chown --reference="$0" "$SCRIPT_DIR/$ARC"
-chmod --reference="$0" "$SCRIPT_DIR/$ARC"
-
 bbecho "Returning to script directory..."
 cd "$SCRIPT_DIR"
+
+becho "Restoring permissions on configuration archive..."
+chown --reference="resources/oemsplash.png" "$SCRIPT_DIR/$ARC"
+chmod --reference="resources/oemsplash.png" "$SCRIPT_DIR/$ARC"
 
 becho "Finished creating Kodi configuration archive $ARC."
