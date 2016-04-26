@@ -7,7 +7,7 @@ cerr()   { if [ ! "$1" = "0" ];then becho "Previous command exited with code $1.
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ARC="resources/kodi-config-enc.tar.7z"
-VER="0.1"
+VER="0.1.1"
 DL_ARC="https://github.com/UMDSpaceSystemsLab/DisplayBoards/releases/download/v$VER/kodi-config-enc.tar.7z"
 
 if [ "$#" != "1" ];then
