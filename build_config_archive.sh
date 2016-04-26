@@ -24,6 +24,27 @@ if [ -z "$SSL_DISPLAYBOARD_ARC_PASS" ];then
 	exit 1
 fi
 
+if [ ! "`whoami`" = "root" ];then
+	becho "You need to be root to use this tool."
+	
+	sudo_loc=`which sudo`
+	if [ "$?" = "0" ];then
+		becho "Attempting to log into root with sudo."
+		sudo -E $0 $@
+		exit $?
+	fi
+	
+	su_loc=`which su`
+	if [ "$?" = "0" ];then
+		becho "Attempting to log into root with su."
+		su -p -c "$0 $@"
+		exit $?
+	fi
+	
+	becho "ERROR: You must be root to use this tool!"
+	exit 1
+fi
+
 becho "Creating configuration archive..."
 
 bbecho "Removing any old archives..."
@@ -35,6 +56,10 @@ cd "$1"
 bbecho "Creating \033[32mencrypted\033[0m\033[1m configuration archive..."
 sleep 3s
 tar cf - ".kodi" ".cache" | 7z a -si "$SCRIPT_DIR/$ARC" -mhe -p"$SSL_DISPLAYBOARD_ARC_PASS"
+
+becho "Restoring permissions on configuration archive..."
+chown --reference="$0" "$SCRIPT_DIR/$ARC"
+chmod --reference="$0" "$SCRIPT_DIR/$ARC"
 
 bbecho "Returning to script directory..."
 cd "$SCRIPT_DIR"
