@@ -18,9 +18,14 @@ if [ ! -d "$1" ];then
 	exit 1
 fi
 
+if [ ! -f "$1/SYSTEM" ];then
+	becho "ERROR: Path '$1' does not seem to be the system partition!"
+	exit 1
+fi
+
 becho "Installing OEM splash screen for SSL..."
 
-cp resources/oemsplash.png "$1"
-cp resources/SSL.png "$1"
+cp resources/oemsplash.png "$1"; cerr $?
+cp resources/SSL.png "$1"; cerr $?
 
 becho "Finished installing OEM splash screen for SSL."

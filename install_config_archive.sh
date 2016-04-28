@@ -57,13 +57,14 @@ fi
 becho "Installing configuration archive..."
 
 bbecho "Entering Kodi data partition directory..."
-cd "$1"
+cd "$1"; cerr $?
 
 bbecho "Extracting \033[32mencrypted\033[0m\033[1m configuration archive..."
 sleep 3s
 7z x -so "$SCRIPT_DIR/$ARC" -p"$SSL_DISPLAYBOARD_ARC_PASS" | tar -xv --overwrite -f -
+cerr $?
 
 bbecho "Returning to script directory..."
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR"; cerr $?
 
 becho "Finished installing Kodi configuration archive $ARC."

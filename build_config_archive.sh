@@ -51,17 +51,18 @@ bbecho "Removing any old archives..."
 [ -f "$ARC" ] && mv "$ARC" "$ARC".old && bbecho "Created backup: kodi-config-enc.tar.7z.old"
 
 bbecho "Entering Kodi data partition directory..."
-cd "$1"
+cd "$1"; cerr $?
 
 bbecho "Creating \033[32mencrypted\033[0m\033[1m configuration archive..."
 sleep 3s
 tar cf - ".kodi" ".cache" | 7z a -si "$SCRIPT_DIR/$ARC" -mhe -p"$SSL_DISPLAYBOARD_ARC_PASS"
+cerr $?
 
 bbecho "Returning to script directory..."
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR"; cerr $?
 
 becho "Restoring permissions on configuration archive..."
-chown --reference="resources/oemsplash.png" "$SCRIPT_DIR/$ARC"
-chmod --reference="resources/oemsplash.png" "$SCRIPT_DIR/$ARC"
+chown --reference="resources/oemsplash.png" "$SCRIPT_DIR/$ARC"; cerr $?
+chmod --reference="resources/oemsplash.png" "$SCRIPT_DIR/$ARC"; cerr $?
 
 becho "Finished creating Kodi configuration archive $ARC."

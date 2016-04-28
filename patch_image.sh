@@ -77,8 +77,8 @@ becho "Exiting environment..."
 cd ..; cerr $?
 
 becho "Restoring permissions on image file..."
-chown --reference="$SCRIPT_DIR/$1.backup" "$SCRIPT_DIR/$1"
-chmod --reference="$SCRIPT_DIR/$1.backup" "$SCRIPT_DIR/$1"
+chown --reference="$SCRIPT_DIR/$1.backup" "$SCRIPT_DIR/$1"; cerr $?
+chmod --reference="$SCRIPT_DIR/$1.backup" "$SCRIPT_DIR/$1"; cerr $?
 
 becho "Finished patching image '$1'."
 becho "Patched directory in workdir/. Delete it if you don't need it."
