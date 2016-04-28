@@ -20,6 +20,7 @@ fi
 
 if [ ! -f "$1/config.txt" ];then
     becho "ERROR: Configuration file config.txt not found in system partition!"
+    becho "       Are you sure you specified the correct directory?"
     exit 1
 fi
 
