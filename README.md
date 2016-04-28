@@ -3,53 +3,40 @@ This is a repo for the SBC display computers attached to the numerous Television
 
 # Instructions
 
- 1. Image your favorite OpenELEC image first. Copy it to your SD card as such:
+ 1. Install your favorite OpenELEC image first. Copy it to your SD card
+    as such:
     
         sudo dd if=OpenELEC-RPi2.arm-6.0.3.img of=/dev/sdc bs=4M
     
     (Note - your OpenELEC image may vary!)
 
- 2. Unplug and boot with your RPi. Once it has booted (it says it wants to reboot), unplug it!
+ 2. Unplug and boot with your RPi. Once it has booted (it says it wants to
+    reboot), unplug it!
 
- 3. Mount the data partition, and run:
+ 3. Set up your `SSL_DISPLAYBOARD_ARC_PASS` environment variable to the
+    archive password, e.g.
     
-        ./install_config_archive.sh /path/to/mounted/data/partition
+        export SSL_DISPLAYBOARD_ARC_PASS="MyPasswordHere"
     
- 4. Mount the mini system partition, and copy `SYSTEM` to this directory.
+    (It may be useful to store the above line in your `.bashrc`, or in a
+    script that you can easily source.)
 
- 5. Run:
+ 4. Mount the system and data partition, and run:
     
-        ./patch_image.sh SYSTEM
+        ./install_all.sh /path/to/mounted/mini/system/partition /path/to/mounted/data/partition
     
-
- 6. Copy the new `SYSTEM` back onto the mini system partition.
-
- 7. Run:
+    * If you want to enable (force) composite output, add `-c`:
     
-        ./install_oemsplash.sh /path/to/mounted/mini/system/partition
+        ./install_all.sh /path/to/mounted/mini/system/partition /path/to/mounted/data/partition -c
     
-
- 8. (OPTIONAL) To force composite mode, you can also run this command:
+    * If you want to enable (force) 16:9 composite output, add `-w`:
     
-        ./install_display_config_rpi1.sh /path/to/mounted/mini/system/partition
+        ./install_all.sh /path/to/mounted/mini/system/partition /path/to/mounted/data/partition -w
     
-
- 9. (OPTIONAL) To force composite mode 16:9 ratio, you can also run this
-    command:
-    
-        ./install_display_config_rpi1_ratio169.sh /path/to/mounted/mini/system/partition
-    
-    Note that you should only run this after you run the composite mode
-    installer.
-
- 10. (OPTIONAL) Copy videos you want to the data partition's `video` folder.
-     (If it doesn't exist, create it.)
-
- 11. Unmount both partitions and eject the SD card.
-
- 12. Plug in and enjoy!
+ 5. That's it! Go ahead and boot your shiny new SD card!
  
- 13. (OPTIONAL) If you are using composite mode, you can go into
-     `System > Settings > System > Video Output > Video calibration...`
-     to adjust the overscan. This would allow all of the contents of the
-     screen to be seen.
+ 6. (OPTIONAL) If you are using composite mode, you can go into
+    `System > Settings > System > Video Output > Video calibration...`
+    to adjust the overscan. This would allow all of the contents of the
+    screen to be seen.
+
